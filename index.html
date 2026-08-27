@@ -51,6 +51,7 @@ figcaption{font-size:.94rem;max-width:72ch;display:flex;flex-direction:column;ga
 .lab{font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;align-items:start}
 
 .vid{position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:3px;overflow:hidden}
 .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -63,7 +64,7 @@ footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:v
 @media (max-width:720px){
   body{font-size:17px}
   header.top h1{font-size:1.9rem}
-  .pair,.trio{grid-template-columns:1fr}
+  .pair,.trio,.quad{grid-template-columns:1fr}
   .wrap,nav .inner{padding-left:16px;padding-right:16px}
 }
 :focus-visible{outline:2px solid var(--term);outline-offset:3px}
@@ -307,14 +308,14 @@ footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:v
 <section class="task" id="task04">
   <p class="tasknum">Week 04 · Task 04</p>
   <h2>The GIF — looping moving image</h2>
-  <p class="intro">Animating the composite layers through <span class="t">the Photoshop Timeline</span> in <span class="t">Frame Animation</span> mode to produce looping <span class="t">non-linear motion designs</span> — a form of <span class="t">temporal and spatial montage</span> — and testing how export parameters change the result.</p>
+  <p class="intro">Animating the composite layers through <span class="t">the Photoshop Timeline</span> in <span class="t">Frame Animation</span> mode to produce looping <span class="t">non-linear motion designs</span> — a form of <span class="t">temporal and spatial montage</span> — varying frame duration, applying tweening, and testing how export parameters change the result across four outputs.</p>
 
   <div class="spec">
     <span><b>mode</b> Frame Animation</span>
     <span><b>frames</b> 13</span>
     <span><b>output</b> 500 × 458 px · GIF</span>
     <span><b>palette</b> 256 · Selective · 100% dither</span>
-    <span><b>outputs</b> 3</span>
+    <span><b>outputs</b> 4</span>
   </div>
 
   <div class="figs">
@@ -356,21 +357,39 @@ footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:v
       </figure>
     </div>
 
-    <div class="trio">
+    <div class="pair">
+      <figure>
+        <img src="images/t4-07.jpg" alt="Photoshop frame animation timeline with every frame set to 0.1 seconds">
+        <figcaption><span class="lab">Frame duration — 0.1 s</span>
+          <span>The same thirteen source frames with the frame duration cut from 0.5 s to 0.1 s. At a tenth of a second per frame the loop stops reading as a sequence of stills and becomes continuous motion — the same material, a completely different temporal quality.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t4-08.jpg" alt="Save for Web export settings showing 128 colours, zero dither and frame 5 of 18">
+        <figcaption><span class="lab">Tweening — 13 frames to 18</span>
+          <span>Export settings at 128 colours with dither dropped to 0%. The frame counter reads <strong>5 of 18</strong>: five tweened frames have been generated between two of the originals, so the thirteen-frame animation now runs to eighteen. Tweening interpolates the in-between states rather than requiring them to be drawn, softening the step between two frames into a graded transition.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="quad">
+      <figure>
+        <img src="images/t4-gif-4.gif" alt="Fourth animated GIF output with tweening and shortened frame duration">
+        <figcaption><span class="lab">GIF 01 — tweened, 0.1 s frames</span>
+          <span>The first animation rebuilt with tweening applied and the frame duration shortened to 0.1 s. Against the versions below, the difference is legibility of motion: the tweened in-between frames remove the jump between states, and the shorter hold means the eye reads movement rather than a succession of separate photographs.</span></figcaption>
+      </figure>
       <figure>
         <img src="images/t4-gif-1.gif" alt="First animated GIF output">
-        <figcaption><span class="lab">GIF 01</span>
-          <span>Thirteen frames at 0.5 s each. The half-second hold reads as deliberate and stepped — closer to a slide sequence than to motion.</span></figcaption>
+        <figcaption><span class="lab">GIF 02</span>
+          <span>Thirteen frames at 0.5 s each, no tweening. The half-second hold reads as deliberate and stepped — closer to a slide sequence than to motion.</span></figcaption>
       </figure>
       <figure>
         <img src="images/t4-gif-2.gif" alt="Second animated GIF output">
-        <figcaption><span class="lab">GIF 02</span>
+        <figcaption><span class="lab">GIF 03</span>
           <span>The same frame set with blending mode and adjustment layers active, producing tonal jumps between frames that give the loop an irregular visual rhythm on top of its even timing.</span></figcaption>
       </figure>
       <figure>
         <img src="images/t4-gif-3.gif" alt="Third animated GIF output">
-        <figcaption><span class="lab">GIF 03</span>
-          <span>Exported with different palette and looping parameters. Of the three, this one holds together best as a loop — the return to the first frame is least visible.</span></figcaption>
+        <figcaption><span class="lab">GIF 04</span>
+          <span>Exported with different palette and looping parameters. Of the four, this one holds together best as a loop — the return to the first frame is least visible.</span></figcaption>
       </figure>
     </div>
   </div>
