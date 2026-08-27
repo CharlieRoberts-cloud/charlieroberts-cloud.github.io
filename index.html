@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1740QCA Charlie Roberts — Process Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+:root{
+  --paper:#F5F6F7; --card:#FFFFFF; --surface:#EAEDF1;
+  --ink:#14171C; --muted:#5D6673; --rule:#DCE0E6;
+  --term:#B85C08; --term-bg:#FBEFE0; --spec:#252D38;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Newsreader,Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,nav,.ui,.lab,.spec,.tasknum{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--rule)}
+nav .inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:22px;align-items:center;height:54px;overflow-x:auto}
+nav .me{font-weight:600;font-size:.9rem;white-space:nowrap;letter-spacing:-.01em}
+nav a{font-size:.82rem;color:var(--muted);text-decoration:none;white-space:nowrap;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-bottom-color:var(--term)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 52px;display:flex;flex-direction:column;gap:18px;max-width:70ch}
+header.top h1{font-family:"Instrument Sans",sans-serif;font-size:2.6rem;font-weight:600;letter-spacing:-.028em;line-height:1.08}
+.course{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+section.task{padding:56px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:26px}
+.tasknum{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--term)}
+section.task h2{font-size:1.75rem;font-weight:600;letter-spacing:-.02em}
+.intro{max-width:68ch}
+
+.spec{display:flex;flex-wrap:wrap;gap:8px 26px;padding:13px 16px;background:var(--spec);color:#DFE4EB;
+  border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:.76rem}
+.spec b{color:#93A9C6;font-weight:500}
+
+.t{color:var(--term);background:var(--term-bg);padding:1px 4px;border-radius:2px;font-weight:600;font-size:.96em}
+
+.figs{display:flex;flex-direction:column;gap:40px}
+figure{margin:0;display:flex;flex-direction:column;gap:11px}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+figcaption{font-size:.94rem;max-width:72ch;display:flex;flex-direction:column;gap:5px}
+.lab{font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+
+.vid{position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:3px;overflow:hidden}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.output{display:flex;flex-direction:column;gap:12px;padding:22px 0;border-bottom:1px dashed var(--rule)}
+.output:last-child{border-bottom:none}
+
+.report{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:30px 34px;max-width:70ch;display:flex;flex-direction:column;gap:14px}
+.todo{background:var(--term-bg);border-left:3px solid var(--term);padding:12px 16px;font-size:.9rem;border-radius:0 3px 3px 0}
+footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:var(--muted);font-size:.86rem}
+@media (max-width:720px){
+  body{font-size:17px}
+  header.top h1{font-size:1.9rem}
+  .pair,.trio{grid-template-columns:1fr}
+  .wrap,nav .inner{padding-left:16px;padding-right:16px}
+}
+:focus-visible{outline:2px solid var(--term);outline-offset:3px}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <span class="me">1740QCA Charlie Roberts</span>
+  <a href="#task01">Task 01</a><a href="#task02">Task 02</a><a href="#task03">Task 03</a>
+  <a href="#task04">Task 04</a><a href="#task05">Task 05</a><a href="#report">Reflective Report</a>
+</div></nav>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="course">1740QCA Motion Design · Assignment 01 · Trimester 2 2026</p>
+  <h1>Fundamentals of moving image design</h1>
+  <p>A Process Journal documenting the capture, editing, compositing and animation of a lens-based image sequence across six tasks — from database construction through to motion design experiments in After Effects.</p>
+  <p style="color:var(--muted);font-size:.95rem">The sequence was shot on a Canon 80D on a tripod outside the QCAD building at South Bank: a single figure walking toward the camera across grass, against a hard-edged architectural backdrop of white panels, glass and red cladding. A moving figure was chosen because the incremental change from frame to frame — stride, posture, distance — gives the animation something to work with, while the fixed architecture holds the frame still around it.</p>
+</header>
+
+<!-- ============ TASK 01 ============ -->
+<section class="task" id="task01">
+  <p class="tasknum">Week 01 · Task 01</p>
+  <h2>Image Database Creation</h2>
+  <p class="intro">Preparing the drive and building the file directory structure that forms the basis for the image database, then creating the <span class="t">Lightroom Classic Catalogue file</span> that indexes it.</p>
+
+  <div class="spec">
+    <span><b>root</b> Charlie_Roberts_MoDes</span>
+    <span><b>application folders</b> 6</span>
+    <span><b>catalogue</b> 1740QCA.lrcat</span>
+    <span><b>backup</b> separate drive</span>
+  </div>
+
+  <div class="figs">
+    <figure>
+      <img src="images/t1-01.jpg" alt="Finder window showing the top level of the 1740QCA database">
+      <figcaption><span class="lab">Database root</span>
+        <span>The top level of the database. A single named root folder, <code>Charlie_Roberts_MoDes</code>, holds one folder per application in the pipeline — Admin, After Effects, Audition, Lightroom, Photoshop, Premiere Pro — so that every file has one correct location before any work begins.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t1-02.jpg" alt="Finder window with the full expanded folder structure of the database">
+      <figcaption><span class="lab">Full directory structure</span>
+        <span>The structure fully expanded. Each application folder is subdivided by function — Source, Project, Output — while Photoshop is subdivided by file format (TIFF, PSD, JPG, GIF) and Lightroom separates the RAW originals from the 1740QCA catalogue. Separating source files from project files from outputs is what keeps the links between applications intact as the database grows.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t1-03.jpg" alt="Finder window on a separate backup drive containing the Lightroom catalogue backup">
+      <figcaption><span class="lab">Back-up catalogue</span>
+        <span>The catalogue backup held on a physically separate drive. Because the QCAD lab machines are wiped nightly and the catalogue records every non-destructive edit rather than the images themselves, losing the <code>.lrcat</code> would mean losing all editing work while leaving the RAW files untouched. Keeping the backup on a second drive, in a second location, protects against that.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ TASK 02 ============ -->
+<section class="task" id="task02">
+  <p class="tasknum">Week 02 · Task 02</p>
+  <h2>Capture, Import, Edit &amp; Export</h2>
+  <p class="intro">Capturing the sequence as <span class="t">RAW</span> files, importing them into the Lightroom Classic catalogue, editing through <span class="t">non-destructive RAW image processing</span>, and exporting <span class="t">PSD (Photoshop Document)</span> files into the database for compositing.</p>
+
+  <div class="spec">
+    <span><b>camera</b> Canon 80D</span>
+    <span><b>format</b> RAW · CR2</span>
+    <span><b>lens</b> 37 mm</span>
+    <span><b>exposure</b> f/5.6 · 1/640 · ISO 125</span>
+    <span><b>captured</b> 114 frames</span>
+    <span><b>exported</b> 30 × PSD</span>
+  </div>
+
+  <div class="figs">
+    <figure>
+      <img src="images/t2-11.jpg" alt="Finder showing the RAW folder full of Canon CR2 files">
+      <figcaption><span class="lab">RAW camera files</span>
+        <span>114 Canon <code>.CR2</code> files in the RAW folder, around 32 MB each. Shooting RAW rather than JPG was essential to the rest of the workflow: the camera resets to JPG when powered down, and a JPG discards the tonal and <span class="t">colour</span> latitude that the Develop Module edits below depend on.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-12.jpg" alt="Full Lightroom Classic Library module interface showing the imported sequence">
+      <figcaption><span class="lab">Import — Library module</span>
+        <span>The full Library module with the sequence imported into the <code>1740QCA.lrcat</code> catalogue: 114 photographs, sorted by capture time, with 30 selected for export. The grid view makes the incremental change between frames legible — the figure advances slightly in each image, which is what makes the sequence animatable.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-06.jpg" alt="Lightroom Develop module Basics panel with a bright, low-texture edit">
+      <figcaption><span class="lab">Editing 01 — <span class="t">Develop Module</span>, <span class="t">Basics Panel</span></span>
+        <span>A first treatment left on <span class="t">white balance</span> As Shot (5,700 K, tint +19). Highlights pushed to +83 and Whites to +53 blow the building panels out to near-white, while Texture at −40 and Dehaze at −27 soften the surface detail. The result flattens the architecture into graphic blocks and isolates the figure against them.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-01.jpg" alt="Lightroom Develop module with a warm, high-clarity edit">
+      <figcaption><span class="lab">Editing 02 — <span class="t">colour temperature</span> and clarity</span>
+        <span>A custom white balance at 7,277 K with tint −18 warms the whole frame, while Clarity at +43 and Saturation at −18 harden mid-tone edges and drain colour at the same time. Compared with the previous edit this reads as heavier and more contrasted — the same capture producing a markedly different mood through <span class="t">non-destructive image editing</span> alone.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-07.jpg" alt="Lightroom Develop module with a cool, high-clarity edit">
+      <figcaption><span class="lab">Editing 03 — cool treatment</span>
+        <span>Temperature pulled the other way to 5,293 K with tint −4. Clarity at +68 against Texture at −57 is a deliberately contradictory pairing: local contrast is amplified while fine surface detail is suppressed, giving the figure a slightly rendered, non-photographic quality.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-08.jpg" alt="Lightroom Develop module with exposure pulled to minus 2.6">
+      <figcaption><span class="lab">Editing 04 — exposure extreme</span>
+        <span>Exposure taken down to −2.60 with Highlights still at +83. This tests how far the RAW file can be pushed before it breaks: the shadow side of the building collapses to black while the sunlit panels hold detail, demonstrating the recovery range a RAW capture retains and a JPG would not.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-02.jpg" alt="Lightroom masking panel with a red mask overlay across the foreground grass">
+      <figcaption><span class="lab">Local adjustment — masking</span>
+        <span>A mask isolating the foreground grass, shown in red overlay, carrying its own Exposure of −0.81. Masking moves the edit from global to local: the ground can be darkened to sit the figure forward without touching the exposure of the building behind.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-03.jpg" alt="Lightroom Effects panel showing post-crop vignetting and grain">
+      <figcaption><span class="lab">Effects — vignetting</span>
+        <span>Post-Crop Vignetting at −35 on Highlight Priority. Darkening the frame edges pulls the eye to the centre of the composition — a small change, but one that reads across every frame of the sequence once animated.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/t2-05.jpg" alt="Lightroom presets panel">
+        <figcaption><span class="lab">Presets</span>
+          <span>Adaptive and Portrait presets tested as starting points before hand-editing.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t2-04.jpg" alt="Lightroom Copy Settings dialog">
+        <figcaption><span class="lab">Copy Settings</span>
+          <span>Copying the develop settings — Basic, Curve, Colour Mixer, Effects, Crop and both masks — so a single treatment could be applied consistently across the whole sequence. Consistency matters here: an edit that varies frame to frame would flicker once animated.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/t2-15.jpg" alt="Lightroom history panel">
+        <figcaption><span class="lab">History — non-destructive record</span>
+          <span>The History panel showing every step retained in order.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t2-16.jpg" alt="Lightroom history panel showing adjustment values">
+        <figcaption><span class="lab">History — values</span>
+          <span>Each entry records the before and after value. Nothing is written back to the CR2 — this list <em>is</em> the edit, which is what <span class="t">non-destructive RAW image processing</span> means in practice.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/t2-09.jpg" alt="Lightroom Export dialog exporting 30 files to the Photoshop PSD folder">
+        <figcaption><span class="lab"><span class="t">Exporting</span> — destination</span>
+          <span>Thirty files exported to a specific folder: <code>Charlie_Roberts_MoDes/Photoshop/PSD</code>. Exporting to the correct database location keeps the pipeline intact.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t2-10.jpg" alt="Lightroom export file settings showing PSD, sRGB, 8 bit">
+        <figcaption><span class="lab">File settings</span>
+          <span>Image Format <span class="t">PSD</span>, <span class="t">colour space</span> sRGB, 8 bits per component — PSD to preserve layer capability in Photoshop, sRGB because the end point of the work is screen.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/t2-13.jpg" alt="Finder showing exported PSD files in the Photoshop PSD folder">
+      <figcaption><span class="lab">Exported PSDs in the database</span>
+        <span>The exported <code>.psd</code> files landed in <code>Photoshop/PSD/A1</code>, around 69 MB each. The jump from 32 MB RAW to 69 MB PSD is the cost of a flattened, full-resolution, editable document — worth noting when managing drive space across a sequence this long.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t2-14.jpg" alt="Photoshop showing an opened PSD with its canvas dimensions">
+      <figcaption><span class="lab"><span class="t">Image size and format</span></span>
+        <span>A PSD opened in Photoshop: 5755 × 4000 px at 240 ppi, RGB Colour, 8-bit. Confirming dimensions and mode at this point matters because every composite and animation downstream inherits them.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ TASK 03 ============ -->
+<section class="task" id="task03">
+  <p class="tasknum">Week 03 · Task 03</p>
+  <h2>The composite image</h2>
+  <p class="intro">Experimenting in the <span class="t">Photoshop Layer panel</span> to build composite images — the <span class="t">design elements that are used to create motion designs</span> — using <span class="t">layers, masks, transparency &amp; opacity</span>, selections, and <span class="t">transformations &amp; blending modes</span> to produce <span class="t">visual and spatial changes</span> within a single frame.</p>
+
+  <div class="spec">
+    <span><b>document</b> image 1.psd</span>
+    <span><b>dimensions</b> 2250 × 1500 px</span>
+    <span><b>resolution</b> 72 ppi</span>
+    <span><b>mode</b> RGB · 8-bit</span>
+    <span><b>source layers</b> 13</span>
+  </div>
+
+  <div class="figs">
+    <figure>
+      <img src="images/t3-01.jpg" alt="Lightroom collection of 13 images selected for compositing">
+      <figcaption><span class="lab">Selection for compositing</span>
+        <span>A dedicated <code>Composite_portrait</code> collection of 13 frames pulled from the 114-image sequence, chosen because the figure occupies a clearly different position in each. Selecting for spatial separation rather than for the best single photograph is what makes the composite legible.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t3-02.jpg" alt="Photoshop with a layer stack of PSDs and some layer visibility toggled off">
+      <figcaption><span class="lab"><span class="t">Transparency &amp; opacity</span></span>
+        <span>The image sequence loaded as a layer stack, with visibility toggled on alternate layers. Where layers overlap, the figure becomes semi-transparent and reads as a ghost or motion trail — a single still frame that nonetheless describes movement through time.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t3-03.jpg" alt="Photoshop composite with more layers made visible">
+      <figcaption><span class="lab">Layer stack — all visible</span>
+        <span>The same document with the full stack switched on. Stacking every frame produces a dense, smeared column rather than distinct figures, which is what pushed the next stage: cutting the subject out so each instance could be placed deliberately.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t3-04.jpg" alt="Photoshop showing the subject cut out on a transparent background">
+      <figcaption><span class="lab">Selection — subject isolation</span>
+        <span>The figure isolated on a transparent background using Select Subject. Removing the background converts each frame from a photograph into a movable <span class="t">design element</span> that can be positioned independently of where it was originally captured.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/t3-08.jpg" alt="Finished Photoshop composite showing multiple instances of the figure at different scales">
+      <figcaption><span class="lab">Composite — <span class="t">visual and spatial changes</span></span>
+        <span>The finished composite. Cut-out figures at varying scale and opacity are distributed across the frame while the original photograph remains as the background plate, and a large translucent portrait spans the upper half. Scaling the same subject differently within one frame creates a false depth — the eye reads the largest figure as nearest, which was never true in the capture.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/t3-06.jpg" alt="Photoshop layers panel showing cut-out layers above the source PSDs">
+        <figcaption><span class="lab">Layers panel — cut-outs</span>
+          <span>Layers 1–6 hold the isolated figures, each on transparency, above the photographic plate.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t3-07.jpg" alt="Photoshop layers panel showing the underlying PSD source layers">
+        <figcaption><span class="lab">Layers panel — source frames</span>
+          <span>Beneath them, the original PSDs remain live and named by frame number, so any instance can be revisited without re-cutting.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/t3-05.jpg" alt="Photoshop composite in progress with the layer stack visible">
+      <figcaption><span class="lab"><span class="t">Cropping &amp; resizing</span></span>
+        <span>The working document at 2250 × 1500 px, 72 ppi — deliberately reduced from the 5755 × 4000 px source. Dropping resolution at the compositing stage keeps a thirteen-layer file responsive and matches the resolution the GIF and video outputs actually need.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ TASK 04 ============ -->
+<section class="task" id="task04">
+  <p class="tasknum">Week 04 · Task 04</p>
+  <h2>The GIF — looping moving image</h2>
+  <p class="intro">Animating the composite layers through <span class="t">the Photoshop Timeline</span> in <span class="t">Frame Animation</span> mode to produce looping <span class="t">non-linear motion designs</span> — a form of <span class="t">temporal and spatial montage</span> — and testing how export parameters change the result.</p>
+
+  <div class="spec">
+    <span><b>mode</b> Frame Animation</span>
+    <span><b>frames</b> 13</span>
+    <span><b>output</b> 500 × 458 px · GIF</span>
+    <span><b>palette</b> 256 · Selective · 100% dither</span>
+    <span><b>outputs</b> 3</span>
+  </div>
+
+  <div class="figs">
+    <figure>
+      <img src="images/t4-01.jpg" alt="Photoshop frame animation timeline showing thirteen frames">
+      <figcaption><span class="lab"><span class="t">The Photoshop Timeline</span> — <span class="t">Frame Animation</span></span>
+        <span>Thirteen frames in the Timeline, each holding at 0.5 seconds, with the loop set to play three times. Every frame here is a temporal representation of one layer in the Layers panel — the stack is being read through time rather than through depth.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/t4-02.jpg" alt="Photoshop layers panel with Darken blending mode applied">
+        <figcaption><span class="lab"><span class="t">Blending modes</span></span>
+          <span>Darken applied to a frame layer, with Propagate Frame 1 enabled so the change carries through the animation rather than affecting a single frame.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t4-04.jpg" alt="Photoshop Exposure adjustment layer properties">
+        <figcaption><span class="lab"><span class="t">Adjustment layers</span> — Exposure</span>
+          <span>An Exposure adjustment at +3.23 with Gamma 1.15, driving one frame far brighter than its neighbours to create a flash within the loop.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/t4-06.jpg" alt="Photoshop Curves adjustment layer clipped between frame layers">
+      <figcaption><span class="lab"><span class="t">Adjustment layers &amp; clipping masks</span> — Curves</span>
+        <span>A Curves adjustment sitting between two frame layers with a steeply lifted curve. Because it affects only the layers below it, the tonal shift enters partway through the loop rather than applying to the whole animation — an aesthetic change that is also a temporal one.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/t4-03.jpg" alt="Photoshop Save for Web GIF export settings looping three times">
+        <figcaption><span class="lab">GIF export parameters — 01</span>
+          <span>Save for Web at 500 × 458 px, GIF, Selective palette, 256 colours, 100% Diffusion dither. Looping set to <strong>Other (3)</strong> — the animation plays three times and stops. File size 1.076 MB.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t4-05.jpg" alt="Photoshop Save for Web GIF export settings looping forever">
+        <figcaption><span class="lab">GIF export parameters — 02</span>
+          <span>The same dimensions and palette with looping set to <strong>Forever</strong>, at 1005 KB. Changing only the looping option changes how the work is read: a finite three-play sequence has a beginning and an end, while an infinite loop has neither.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="trio">
+      <figure>
+        <img src="images/t4-gif-1.gif" alt="First animated GIF output">
+        <figcaption><span class="lab">GIF 01</span>
+          <span>Thirteen frames at 0.5 s each. The half-second hold reads as deliberate and stepped — closer to a slide sequence than to motion.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t4-gif-2.gif" alt="Second animated GIF output">
+        <figcaption><span class="lab">GIF 02</span>
+          <span>The same frame set with blending mode and adjustment layers active, producing tonal jumps between frames that give the loop an irregular visual rhythm on top of its even timing.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t4-gif-3.gif" alt="Third animated GIF output">
+        <figcaption><span class="lab">GIF 03</span>
+          <span>Exported with different palette and looping parameters. Of the three, this one holds together best as a loop — the return to the first frame is least visible.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TASK 05 ============ -->
+<section class="task" id="task05">
+  <p class="tasknum">Week 05 · Task 05</p>
+  <h2>Image sequences in After Effects</h2>
+  <p class="intro">Working with <span class="t">image sequences as a fundamental basis of motion design</span> — a <span class="t">non-linear form of motion</span> — experimenting in the After Effects timeline with image speed, transition and duration, and applying <span class="t">effects</span> through <span class="t">adjustment layers</span> and <span class="t">keyframes</span> across six video outputs.</p>
+
+  <div class="spec">
+    <span><b>source</b> 73 × TIFF · 16:9</span>
+    <span><b>comp</b> 1920 × 1080</span>
+    <span><b>frame rate</b> 25 fps</span>
+    <span><b>export</b> H.264 · mp4</span>
+    <span><b>outputs</b> 6</span>
+  </div>
+
+  <div class="figs">
+    <div class="pair">
+      <figure>
+        <img src="images/t5-01.jpg" alt="Lightroom crop tool set to a 16 by 9 aspect ratio">
+        <figcaption><span class="lab">Preparing the sequence — crop</span>
+          <span>The whole sequence cropped to a locked <strong>16 × 9</strong> aspect in Lightroom before export, so the frames arrive in After Effects already matching the composition and need no scaling.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/t5-02.jpg" alt="Lightroom Library module showing the 73-image sequencing collection">
+        <figcaption><span class="lab">Export set — <code>Image_sequencing</code></span>
+          <span>A separate collection of 73 frames, all selected, exported as TIFF into <code>After Effects/Source</code>. Consistent naming across the set is what lets After Effects read them as one sequence rather than 73 stills.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/t5-03.jpg" alt="After Effects New Composition from Selection dialog with a two frame still duration">
+      <figcaption><span class="lab">Building the composition</span>
+        <span>New Composition from Selection with <strong>Still Duration 0;00;00;02</strong> and <strong>Sequence Layers</strong> enabled. Sequence Layers is the critical setting — without it the frames stack at time zero and produce a single image instead of an animation. Still Duration is the direct control over playback speed.</span></figcaption>
+    </figure>
+
+    <div class="output">
+      <figure>
+        <img src="images/t5-04.jpg" alt="After Effects project panel showing the baseline composition at 5 seconds 19 frames">
+        <figcaption><span class="lab">Output 01 — baseline · 2 frames per image</span>
+          <span>1920 × 1080, 25 fps, running 5 s 19 f. Two frames per image gives roughly 12 images per second — the standard stop-motion rate, fast enough to read as movement while each frame is still individually visible. This is the reference every other output is compared against.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/VIDEO_ID_01" title="Output 01 baseline" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <img src="images/t5-05.jpg" alt="After Effects project panel showing the fast composition at 2 seconds 22 frames">
+        <figcaption><span class="lab">Output 02 — image speed · 1 frame per image</span>
+          <span>The same 73 frames compressed to 2 s 22 f. Halving the still duration doubles the speed, and at 25 images per second the individual frames stop being separable — the stepped, hand-made quality of the baseline disappears and the sequence reads as continuous video.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/VIDEO_ID_02" title="Output 02 fast" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <img src="images/t5-06.jpg" alt="After Effects project panel showing the slow composition at 17 seconds 7 frames">
+        <figcaption><span class="lab">Output 03 — duration · 6 frames per image</span>
+          <span>Tripling the still duration extends the same material to 17 s 7 f. Each frame now holds long enough to be looked at rather than passed through, and the work shifts from animation toward a sequence of held photographs — the movement becomes something the viewer infers between frames rather than sees.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/VIDEO_ID_03" title="Output 03 slow" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <img src="images/t5-07.jpg" alt="After Effects New Composition dialog with overlap and dissolve front layer enabled">
+        <figcaption><span class="lab">Output 04 — transition · dissolve, 3 frame overlap</span>
+          <span>Still Duration 0:00:00:06 with <strong>Overlap</strong> enabled at 0:00:00:03 and Transition set to <strong>Dissolve Front Layer</strong>. Each frame now cross-fades into the next across three frames instead of cutting. The hard temporal boundary between images softens, and the walking figure blurs into a continuous drift rather than a series of steps.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/VIDEO_ID_04" title="Output 04 dissolve" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <div class="pair">
+        <figure>
+          <img src="images/t5-08.jpg" alt="After Effects Layer New Adjustment Layer menu">
+          <figcaption><span class="lab">Adding the <span class="t">adjustment layer</span></span>
+            <span>Layer &gt; New &gt; Adjustment Layer, placed above the full stack so its effect applies to every frame beneath it.</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/t5-09.jpg" alt="After Effects Effect Color Correction Exposure menu">
+          <figcaption><span class="lab">Applying the <span class="t">effect</span></span>
+            <span>Effect &gt; Color Correction &gt; Exposure applied to the adjustment layer rather than to any individual image.</span></figcaption>
+        </figure>
+      </div>
+      <div class="pair">
+        <figure>
+          <img src="images/t5-10.jpg" alt="After Effects timeline showing the first exposure keyframe at minus two">
+          <figcaption><span class="lab"><span class="t">Keyframe</span> 01 — 0:00</span>
+            <span>Exposure set to −2.00 at the first frame, with the stopwatch enabled to record it.</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/t5-11.jpg" alt="After Effects timeline showing the second exposure keyframe at 0.98">
+          <figcaption><span class="lab"><span class="t">Keyframe</span> 02 — 5:18</span>
+            <span>Exposure at +0.98 on the last frame. Two keyframes are all that is needed; After Effects interpolates every value between them.</span></figcaption>
+        </figure>
+      </div>
+      <figcaption style="max-width:72ch"><span class="lab">Output 05 — keyframed exposure ramp</span>
+        <span>The sequence opens almost black and resolves to full exposure across its length. Because the ramp is continuous while the underlying image sequence is stepped, two different temporal logics run at once — a smooth arc laid over a staccato one — and the result has a direction and an ending the raw sequence does not.</span></figcaption>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/VIDEO_ID_05" title="Output 05 exposure ramp" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <div class="pair">
+        <figure>
+          <img src="images/t5-12.jpg" alt="After Effects pre-compose menu">
+          <figcaption><span class="lab">Pre-composing</span>
+            <span>All 73 layers pre-composed into <code>06_source</code> so the whole sequence could be time-manipulated as a single object.</span></figcaption>
+        </figure>
+        <figure>
+          <img src="images/t5-13.jpg" alt="After Effects Layer Time Enable Time Remapping menu">
+          <figcaption><span class="lab">Enable Time Remapping</span>
+            <span>Layer &gt; Time &gt; Enable Time Remapping, which decouples playback time from source time.</span></figcaption>
+        </figure>
+      </div>
+      <figure>
+        <img src="images/t5-14.jpg" alt="Full After Effects interface showing the time remap composition and Time Remap property">
+        <figcaption><span class="lab">Output 06 — time remapping · speed ramp</span>
+          <span>The full interface with <code>006_time_remap</code> open, the pre-composed layer carrying a Time Remap property, and the comp trimmed to 2 s. Moving the final keyframe earlier forces the source to play through faster, and easing the keyframes makes it accelerate and decelerate within a single output. This is the clearest demonstration of <span class="t">non-linear</span> motion in the set: the footage no longer runs at a fixed relationship to real time at all.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/VIDEO_ID_06" title="Output 06 time remap" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <figure>
+      <img src="images/t5-15.jpg" alt="Adobe Media Encoder queue showing seven completed H.264 renders">
+      <figcaption><span class="lab">Export parameters — <span class="t">image size and format</span></span>
+        <span>All compositions queued in Adobe Media Encoder and rendered to <strong>H.264 / mp4</strong> at 1920 × 1080, 25 fps, written back into the <code>After Effects</code> folder of the database. H.264 was chosen as the delivery codec because it is what YouTube re-encodes from most cleanly, and mp4 keeps the files small enough to upload without degrading the outputs.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ TASK 06 ============ -->
+<section class="task" id="report">
+  <p class="tasknum">Week 06 · Task 06</p>
+  <h2>Reflective Report</h2>
+  <div class="report">
+    <p style="color:var(--muted);font-size:.92rem"><em>[Approximately 300 words — to be written after completing the Assignment 01 Self Evaluation Form.]</em></p>
+    <p>Prompts drawn from what the journal above actually shows, to write against rather than copy:</p>
+    <p>· The database in Task 01 was built before any images existed, and it held for the whole assignment — what did having a fixed structure make possible later, and where did it still get untidy?</p>
+    <p>· Task 02 produced four markedly different treatments from one capture. Which reading of the subject do you think is strongest, and what does that tell you about how much of an image is decided at capture versus in the Develop Module?</p>
+    <p>· The composite moved from stacked transparency to cut-out figures. Why did the first approach fail, and what did solving it teach you about layers as <span class="t">design elements</span>?</p>
+    <p>· Across Tasks 04 and 05 you controlled the same variable — duration — in two different applications. Where were the limits of the Photoshop Timeline, and what did After Effects let you do that it could not?</p>
+    <p>· Output 06 was the hardest technically. What went wrong with the time remap keyframes, and what do you now understand about <span class="t">non-linear</span> time that you did not in Week 01?</p>
+  </div>
+</section>
+
+<footer>
+  <p>1740QCA Motion Design · Assignment 01 · Charlie Roberts · Griffith University, Queensland College of Art and Design</p>
+</footer>
+
+</div>
+</body>
+</html>
