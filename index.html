@@ -68,14 +68,63 @@ footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:v
   .wrap,nav .inner{padding-left:16px;padding-right:16px}
 }
 :focus-visible{outline:2px solid var(--term);outline-offset:3px}
+
+/* ---- shared nav with dropdowns ---- */
+nav .inner{overflow:visible;flex-wrap:wrap;height:auto;min-height:54px;padding-top:6px;padding-bottom:6px}
+nav .me{font-weight:600;font-size:.9rem;white-space:nowrap;letter-spacing:-.01em;margin-right:6px}
+.menu{position:relative}
+.menubtn{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);
+  background:none;border:0;padding:6px 2px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
+  border-bottom:2px solid transparent;white-space:nowrap}
+.menubtn:hover,.menubtn:focus-visible,.menu:hover .menubtn,.menu:focus-within .menubtn{color:var(--ink);border-bottom-color:var(--term)}
+.menubtn .car{font-size:.62em;transform:translateY(1px)}
+.menubtn[aria-current="true"]{color:var(--ink);border-bottom-color:var(--term)}
+.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:260px;background:var(--card);
+  border:1px solid var(--rule);border-radius:3px;box-shadow:0 10px 28px rgba(20,23,28,.13);
+  padding:6px;display:none;flex-direction:column;z-index:20}
+.menu:hover .drop,.menu:focus-within .drop,.menu.open .drop{display:flex}
+.drop a{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);
+  text-decoration:none;padding:8px 11px;border-radius:2px;border-bottom:0;white-space:nowrap;line-height:1.35}
+.drop a:hover,.drop a:focus-visible{background:var(--surface);color:var(--ink);border-bottom:0}
+.drop .sep{height:1px;background:var(--rule);margin:5px 8px}
+@media (max-width:720px){
+  .drop{position:static;box-shadow:none;border:0;padding:0 0 0 12px;min-width:0}
+  .menu:hover .drop,.menu:focus-within .drop{display:none}
+  .menu.open .drop{display:flex}
+  nav .inner{gap:14px}
+}
 </style>
 </head>
 <body>
 
 <nav><div class="inner">
-  <span class="me">1740QCA Charlie Roberts</span>
-  <a href="#task01">Task 01</a><a href="#task02">Task 02</a><a href="#task03">Task 03</a>
-  <a href="#task04">Task 04</a><a href="#task05">Task 05</a><a href="#report">Reflective Report</a>
+  <span class="me">1740QCA Motion Design &middot; Charlie Roberts</span>
+
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false" aria-current="true">Assignment 01 <span class="car">&#9660;</span></button>
+    <div class="drop">
+      <a href="index.html#task01">Task 01 &middot; Image Database Creation</a>
+      <a href="index.html#task02">Task 02 &middot; Capture, Import, Edit &amp; Export</a>
+      <a href="index.html#task03">Task 03 &middot; The Composite Image</a>
+      <a href="index.html#task04">Task 04 &middot; The GIF — Looping Moving Image</a>
+      <a href="index.html#task05">Task 05 &middot; Image Sequences in After Effects</a>
+      <div class="sep"></div>
+      <a href="index.html#report">Reflective Report</a>
+    </div>
+  </div>
+
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false">Assignment 02 <span class="car">&#9660;</span></button>
+    <div class="drop">
+      <a href="assignment-02.html#task01">Task 01 &middot; Animating 2D Text</a>
+      <a href="assignment-02.html#task02">Task 02 &middot; Animating 3D Text</a>
+      <a href="assignment-02.html#task03">Task 03 &middot; Refining, Timing &amp; Compositing</a>
+      <div class="sep"></div>
+      <a href="assignment-02.html#report">Reflective Report</a>
+      <a href="assignment-02.html#references">References</a>
+    </div>
+  </div>
+
 </div></nav>
 
 <div class="wrap">
@@ -554,5 +603,24 @@ footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:v
 </footer>
 
 </div>
+
+<script>
+/* tap-to-open on touch devices; hover handles desktop */
+document.querySelectorAll('.menubtn').forEach(function(b){
+  b.addEventListener('click',function(e){
+    e.preventDefault();
+    var m=b.parentElement, wasOpen=m.classList.contains('open');
+    document.querySelectorAll('.menu.open').forEach(function(o){o.classList.remove('open');
+      o.querySelector('.menubtn').setAttribute('aria-expanded','false');});
+    if(!wasOpen){m.classList.add('open');b.setAttribute('aria-expanded','true');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.menu')){
+    document.querySelectorAll('.menu.open').forEach(function(o){o.classList.remove('open');
+      o.querySelector('.menubtn').setAttribute('aria-expanded','false');});
+  }
+});
+</script>
 </body>
 </html>

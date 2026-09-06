@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1740QCA Charlie Roberts — Assignment 02 Process Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+:root{
+  --paper:#F5F6F7; --card:#FFFFFF; --surface:#EAEDF1;
+  --ink:#14171C; --muted:#5D6673; --rule:#DCE0E6;
+  --term:#B85C08; --term-bg:#FBEFE0; --spec:#252D38;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Newsreader,Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,nav,.ui,.lab,.spec,.tasknum{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--rule)}
+nav .inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:22px;align-items:center;height:54px;overflow-x:auto}
+nav .me{font-weight:600;font-size:.9rem;white-space:nowrap;letter-spacing:-.01em}
+nav a{font-size:.82rem;color:var(--muted);text-decoration:none;white-space:nowrap;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-bottom-color:var(--term)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 52px;display:flex;flex-direction:column;gap:18px;max-width:70ch}
+header.top h1{font-family:"Instrument Sans",sans-serif;font-size:2.6rem;font-weight:600;letter-spacing:-.028em;line-height:1.08}
+.course{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+section.task{padding:56px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:26px}
+.tasknum{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--term)}
+section.task h2{font-size:1.75rem;font-weight:600;letter-spacing:-.02em}
+.intro{max-width:68ch}
+
+.spec{display:flex;flex-wrap:wrap;gap:8px 26px;padding:13px 16px;background:var(--spec);color:#DFE4EB;
+  border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:.76rem}
+.spec b{color:#93A9C6;font-weight:500}
+
+.t{color:var(--term);background:var(--term-bg);padding:1px 4px;border-radius:2px;font-weight:600;font-size:.96em}
+
+.figs{display:flex;flex-direction:column;gap:40px}
+figure{margin:0;display:flex;flex-direction:column;gap:11px}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+figcaption{font-size:.94rem;max-width:72ch;display:flex;flex-direction:column;gap:5px}
+.lab{font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;align-items:start}
+
+.vid{position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:3px;overflow:hidden}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.output{display:flex;flex-direction:column;gap:12px;padding:22px 0;border-bottom:1px dashed var(--rule)}
+.output:last-child{border-bottom:none}
+
+.report{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:30px 34px;max-width:70ch;display:flex;flex-direction:column;gap:14px}
+.todo{background:var(--term-bg);border-left:3px solid var(--term);padding:12px 16px;font-size:.9rem;border-radius:0 3px 3px 0}
+footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:var(--muted);font-size:.86rem}
+@media (max-width:720px){
+  body{font-size:17px}
+  header.top h1{font-size:1.9rem}
+  .pair,.trio,.quad{grid-template-columns:1fr}
+  .wrap,nav .inner{padding-left:16px;padding-right:16px}
+}
+:focus-visible{outline:2px solid var(--term);outline-offset:3px}
+
+/* ---- shared nav with dropdowns ---- */
+nav .inner{overflow:visible;flex-wrap:wrap;height:auto;min-height:54px;padding-top:6px;padding-bottom:6px}
+nav .me{font-weight:600;font-size:.9rem;white-space:nowrap;letter-spacing:-.01em;margin-right:6px}
+.menu{position:relative}
+.menubtn{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);
+  background:none;border:0;padding:6px 2px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
+  border-bottom:2px solid transparent;white-space:nowrap}
+.menubtn:hover,.menubtn:focus-visible,.menu:hover .menubtn,.menu:focus-within .menubtn{color:var(--ink);border-bottom-color:var(--term)}
+.menubtn .car{font-size:.62em;transform:translateY(1px)}
+.menubtn[aria-current="true"]{color:var(--ink);border-bottom-color:var(--term)}
+.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:260px;background:var(--card);
+  border:1px solid var(--rule);border-radius:3px;box-shadow:0 10px 28px rgba(20,23,28,.13);
+  padding:6px;display:none;flex-direction:column;z-index:20}
+.menu:hover .drop,.menu:focus-within .drop,.menu.open .drop{display:flex}
+.drop a{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);
+  text-decoration:none;padding:8px 11px;border-radius:2px;border-bottom:0;white-space:nowrap;line-height:1.35}
+.drop a:hover,.drop a:focus-visible{background:var(--surface);color:var(--ink);border-bottom:0}
+.drop .sep{height:1px;background:var(--rule);margin:5px 8px}
+@media (max-width:720px){
+  .drop{position:static;box-shadow:none;border:0;padding:0 0 0 12px;min-width:0}
+  .menu:hover .drop,.menu:focus-within .drop{display:none}
+  .menu.open .drop{display:flex}
+  nav .inner{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="inner">
+  <span class="me">1740QCA Motion Design &middot; Charlie Roberts</span>
+
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false">Assignment 01 <span class="car">&#9660;</span></button>
+    <div class="drop">
+      <a href="index.html#task01">Task 01 &middot; Image Database Creation</a>
+      <a href="index.html#task02">Task 02 &middot; Capture, Import, Edit &amp; Export</a>
+      <a href="index.html#task03">Task 03 &middot; The Composite Image</a>
+      <a href="index.html#task04">Task 04 &middot; The GIF — Looping Moving Image</a>
+      <a href="index.html#task05">Task 05 &middot; Image Sequences in After Effects</a>
+      <div class="sep"></div>
+      <a href="index.html#report">Reflective Report</a>
+    </div>
+  </div>
+
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false" aria-current="true">Assignment 02 <span class="car">&#9660;</span></button>
+    <div class="drop">
+      <a href="assignment-02.html#task01">Task 01 &middot; Animating 2D Text</a>
+      <a href="assignment-02.html#task02">Task 02 &middot; Animating 3D Text</a>
+      <a href="assignment-02.html#task03">Task 03 &middot; Refining, Timing &amp; Compositing</a>
+      <div class="sep"></div>
+      <a href="assignment-02.html#report">Reflective Report</a>
+      <a href="assignment-02.html#references">References</a>
+    </div>
+  </div>
+
+</div></nav>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="course">1740QCA Motion Design &middot; Assignment 02 &middot; Trimester 2 2026</p>
+  <h1>Motion graphic design</h1>
+  <p>A Process Journal documenting the design of a <span class="t">2D kinetic text</span> sequence, its extension into <span class="t">3D text</span> with <span class="t">virtual cameras</span> and <span class="t">virtual lights</span>, and the refinement and compositing of both into a finished motion design <span class="t">synchronised</span> to a soundtrack.</p>
+  <p style="color:var(--muted);font-size:.95rem">The text is an original twelve-line poem in six rhyming couplets, moving from concealment to disclosure — building walls, the walls breaking, and what grows afterwards. Almost every line contains a physical verb, so the <span class="t">motion design</span> is dictated by the language rather than applied to it: the line about breaking physically breaks, and the line about growth scales. The soundtrack is a cinematic instrumental at 89&nbsp;BPM, and every animation event is <span class="t">synchronised</span> to a marker placed by ear against the audio waveform.</p>
+  <div class="spec">
+    <span><b>text</b> 12 lines · 6 couplets</span>
+    <span><b>audio</b> 89 BPM · 32.32 s</span>
+    <span><b>comp</b> 1920 × 1080 · 25 fps · 808 frames</span>
+    <span><b>outputs</b> 11</span>
+  </div>
+</header>
+
+<!-- ============ TASK 01 ============ -->
+<section class="task" id="task01">
+  <p class="tasknum">Week 07 &middot; Assignment 02 Task 01</p>
+  <h2>Animating 2D text in After Effects</h2>
+  <p class="intro">Producing <span class="t">variable motion design sequences</span> from <span class="t">2D vector graphics, text</span> using the <span class="t">text panels</span>, <span class="t">transformations</span> and <span class="t">key frames</span>, <span class="t">animation presets</span>, and aesthetic experimentation with <span class="t">effects</span>, all <span class="t">synchronised</span> to a soundtrack.</p>
+
+  <div class="spec">
+    <span><b>comp</b> 1920 × 1080</span>
+    <span><b>frame rate</b> 25 fps</span>
+    <span><b>duration</b> 808 frames · 32.32 s</span>
+    <span><b>tempo</b> 89 BPM</span>
+    <span><b>markers</b> 13</span>
+    <span><b>text layers</b> 12</span>
+    <span><b>outputs</b> 5</span>
+  </div>
+
+  <div class="figs">
+
+    <figure>
+      <img src="images/a02-t1-01.png" alt="After Effects timeline with the audio layer imported into an empty 808 frame composition">
+      <figcaption><span class="lab">Setting up — the audio first</span>
+        <span>The composition built at 1920 × 1080, 25 fps, 808 frames, with the soundtrack imported before any text exists. Building around the audio rather than adding it afterwards is what makes the whole piece <span class="t">synchronised</span> rather than approximately timed.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/a02-t1-02.png" alt="After Effects with the first line of text and the Character panel showing Hoefler Text Black at 100px">
+      <figcaption><span class="lab">Text panel parameters</span>
+        <span>The first line set in the <span class="t">text panel</span> — Hoefler Text Black, 100&nbsp;px, tracking 50. An engraved serif was tried first and rejected: its thin strokes actively undercut the line "I called the silence strength", so the typeface was changed to one whose weight matches the language. The audio layer below already carries its thirteen <span class="t">layer markers</span>, placed by ear against the beat.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t1-03.png" alt="After Effects timeline showing position and opacity keyframes on the first text layer against the audio waveform">
+        <figcaption><span class="lab">Transformations and key frames</span>
+          <span>Position and opacity <span class="t">key frames</span> on the opening line, landing on the marker grid. The line rises from below and fades up as the first beat arrives.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t1-04.png" alt="After Effects composition showing the line I called the silence strength with three text layers in the timeline">
+        <figcaption><span class="lab">Building line by line</span>
+          <span>Each line is a separate layer trimmed between two markers, carrying its own combination of <span class="t">transformations</span>. No two lines behave the same way — the aim across the twelve was <span class="t">variable results</span> rather than a single repeated move.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/a02-t1-05.png" alt="After Effects timeline with four completed text layers above the audio layer and its markers">
+      <figcaption><span class="lab">Layer structure against the marker grid</span>
+        <span>Four lines in. Every layer's in and out point is snapped to a marker, so the text changes exactly on the beat rather than near it. Because the markers were placed by listening rather than calculated from the tempo, their spacing is irregular — and the longest gaps happened to fall on the poem's heaviest lines.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t1-06.png" alt="After Effects timeline with a text animator range selector expanded showing offset at minus 82 percent and randomize order on">
+        <figcaption><span class="lab">Per-character text animators — the scatter</span>
+          <span>A text animator on the line "Then something in me broke", carrying position, scale and rotation, with <strong>Randomize Order</strong> enabled inside the range selector's Advanced options. Animating the selector's <strong>Offset</strong> rather than the properties themselves makes each letter break away individually and in random order — a scatter rather than a left-to-right wipe.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t1-07.png" alt="After Effects timeline showing two text layers with matching animators and opposite offset keyframes">
+        <figcaption><span class="lab">The same animator, reversed</span>
+          <span>The identical animator — Position 0, 500; Scale 40%; Rotation 45° — duplicated onto the following line and time-reversed, so Offset runs from 0% back to −100% and the fragments reassemble into clean text. The <span class="t">key frames</span> are the same; only the direction changes. The break lands on "broke" and the reassembly on "spoke".</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t1-08.png" alt="After Effects timeline showing four position keyframes with uneven spacing on the walls came down like stone">
+        <figcaption><span class="lab">Timing an impact</span>
+          <span>"The walls came down like stone" built with four unevenly spaced position <span class="t">key frames</span> — a fast drop, an overshoot past centre, a small rebound, then settle. The impact keyframe was set to linear interpolation rather than eased, so the fall arrives at full speed and stops dead instead of decelerating into the landing.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t1-09.png" alt="After Effects timeline showing the later text layers and their transform keyframes">
+        <figcaption><span class="lab">Restraint as a decision</span>
+          <span>The line that follows the impact — "I stood there on my own" — carries only two opacity <span class="t">key frames</span> and is set smaller than the rest. After nine lines of movement, the absence of animation does more than any further motion could.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/a02-t1-10.png" alt="After Effects timeline with all twelve text layers expanded showing every keyframe above the audio waveform">
+      <figcaption><span class="lab">The complete composition</span>
+        <span>All twelve text layers with their <span class="t">transformations</span> and <span class="t">key frames</span> expanded, over the audio waveform. Every keyframe column lines up with a marker, which is what makes the piece read as designed to the track rather than laid over it.</span></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/a02-t1-11.png" alt="Full After Effects window showing the project panel and the completed twelve layer composition">
+      <figcaption><span class="lab">Project structure</span>
+        <span>The finished baseline composition. Each variation that follows was made by duplicating this composition and changing a single variable, so the comparisons between outputs are controlled rather than incidental.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t1-12.png" alt="After Effects graph editor showing curved eased keyframe interpolation">
+        <figcaption><span class="lab">Easy Ease — curved interpolation</span>
+          <span>The graph editor for the opening line with Easy Ease applied. The curves show velocity changing across the move: the text accelerates away and decelerates into position.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t1-13.png" alt="After Effects graph editor showing straight linear keyframe interpolation">
+        <figcaption><span class="lab">Linear — the same values, no easing</span>
+          <span>The identical <span class="t">key frames</span> with linear interpolation. Straight lines mean constant velocity. Position, scale and opacity values are unchanged between these two versions — the entire difference in how the piece feels is contained in these curves.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t1-14.png" alt="Adobe Bridge browsing the After Effects Animate In text presets with a live preview playing">
+        <figcaption><span class="lab">Animation presets — previewed in Adobe Bridge</span>
+          <span>Browsing the <span class="t">animation presets</span> in Adobe Bridge, where each preset plays a live preview before it is applied. Comparing presets here rather than applying and undoing them in After Effects made it possible to assess a large number quickly.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t1-15.png" alt="Adobe Bridge browsing the After Effects Blurs presets folder with Blur and Fade In previewing">
+        <figcaption><span class="lab">Preset categories</span>
+          <span>The Blurs category previewing "Blur and Fade In". Presets carry their own timing and personality, generally busier than the hand-built animation, which is what the preset version of the piece is testing.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t1-16.png" alt="After Effects Effect Controls panel showing Turbulent Displace applied to a text layer with a keyframed amount">
+        <figcaption><span class="lab">Effects — Turbulent Displace</span>
+          <span>Turbulent Displace applied to "The weight I would not name", with <strong>Amount</strong> keyframed from 0 and <strong>Size</strong> at 30. The line destabilises as it sinks, so the <span class="t">effect</span> is doing the same work as the words rather than decorating them.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t1-17.png" alt="After Effects Character panel showing Impact at 95 pixels">
+        <figcaption><span class="lab">Typography variant</span>
+          <span>The same sequence reset in Impact at 95&nbsp;px. Changing only the typeface changes the register of the entire piece, which makes clear how much of its tone was carried by the <span class="t">text panel parameters</span> rather than by the motion.</span></figcaption>
+      </figure>
+    </div>
+
+    <!-- ===== OUTPUTS ===== -->
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 01 — baseline &middot; transformations, key frames, Easy Ease</span>
+          <span>The reference version. All twelve lines animated by hand using <span class="t">transformations</span> and <span class="t">key frames</span>, eased throughout. Every other output is a controlled variation on this one.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/rx3aBBlEj8o" title="Output 01 baseline" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 02 — linear interpolation</span>
+          <span>Identical to Output 01 in every spatial value. The only change is <span class="t">key frame</span> interpolation, set to linear. The result reads as mechanical where the eased version reads as weighted — which locates the difference entirely in timing rather than displacement.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/q4AaMpFI0BQ" title="Output 02 linear" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 03 — animation presets</span>
+          <span>Hand-built animation replaced with <span class="t">animation presets</span> across several layers, browsed and previewed in Adobe Bridge. The presets carry their own rhythm and sit less comfortably against the slow tempo of the track than the hand-timed version.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/A07q-ACRk50" title="Output 03 presets" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 04 — effects</span>
+          <span>Fast Box Blur, Turbulent Displace, Glow and Directional Blur applied and keyframed across the sequence, producing <span class="t">variable results</span> from the same underlying animation.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/CvSp3YECsz0" title="Output 04 effects" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 05 — typography</span>
+          <span>The same sequence set in a condensed sans in place of the heavy serif, testing how much of the piece's character came from the typography rather than the animation.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/xLi9QQVGQ1s" title="Output 05 typography" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TASK 02 ============ -->
+<section class="task" id="task02">
+  <p class="tasknum">Week 08 &middot; Assignment 02 Task 02</p>
+  <h2>Animating 3D text in After Effects</h2>
+  <p class="intro">Extending the 2D material into <span class="t">3D text</span> using the Cinema 4D renderer — <span class="t">geometry and material options</span>, <span class="t">virtual lights</span>, <span class="t">virtual cameras</span>, and <span class="t">adjustment layers and effects</span> over <span class="t">background layers</span> — to produce multiple and variable <span class="t">compositions</span>.</p>
+
+  <div class="spec">
+    <span><b>renderer</b> Cinema 4D</span>
+    <span><b>light</b> spot · 150% · animated</span>
+    <span><b>camera</b> 24 mm two-node</span>
+    <span><b>materials</b> specular 70 · metal 80</span>
+    <span><b>outputs</b> 4</span>
+  </div>
+
+  <div class="figs">
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t2-01.png" alt="After Effects Composition Settings dialog with the 3D renderer set to Cinema 4D">
+        <figcaption><span class="lab">Cinema 4D renderer</span>
+          <span>Switching the composition's renderer to Cinema 4D. The dialog lists what this enables — extruded and bevelled 3D text, material overrides on bevels and sides, lights and shadows — and what it disables. This is the step that makes everything else in Task 02 possible.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t2-02.png" alt="After Effects showing extruded 3D text viewed at an angle with geometry options open in the timeline">
+        <figcaption><span class="lab">Geometry options — extrusion depth</span>
+          <span>The <span class="t">geometry</span> options with extrusion depth applied, viewed off-axis using the Orbit Around tool so the thickness of the letterforms is visible. A bevel was added so the edge between face and extrusion catches light rather than reading as a flat cut.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t2-03.png" alt="After Effects Light Settings dialog showing a spot light at 150 percent intensity with shadows enabled">
+        <figcaption><span class="lab">Virtual lights — spotlight</span>
+          <span>A spotlight at 150% intensity, 90° cone angle, 50% cone feather, with <strong>Casts Shadows</strong> enabled. The spotlight's pronounced falloff makes the relationship between light position and surface legible in a way a softer light would not.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t2-04.png" alt="After Effects composition panel in Top view showing the spotlight cone above the text">
+        <figcaption><span class="lab">Top view — understanding light position</span>
+          <span>The same scene from directly above, with the light's cone drawn as geometry. Working in Top view rather than Active Camera view makes the light's position in three-dimensional space explicit, which is far more reliable than judging its effect from the front.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/a02-t2-05.png" alt="After Effects timeline showing the spot light layer with animated position keyframes above all twelve 3D text layers">
+      <figcaption><span class="lab">Animating the light</span>
+        <span>The spotlight's position keyframed across the full composition so the highlight travels over the letterforms as the piece plays. Static lighting renders extrusion as a fixed shape; moving light is what makes the depth continuously legible.</span></figcaption>
+    </figure>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t2-06.png" alt="After Effects Camera Settings dialog showing a two-node camera with a 24mm preset">
+        <figcaption><span class="lab">Virtual cameras — 24&nbsp;mm two-node</span>
+          <span>A two-node <span class="t">virtual camera</span> on a 24&nbsp;mm wide-angle lens, giving a 73.74° angle of view. The wide lens exaggerates perspective, so the extrusion reads as depth as soon as the camera moves. Two-node was chosen over one-node because its point of interest can be animated independently of position.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t2-07.png" alt="After Effects Top view showing both the camera frustum and the spotlight cone relative to the text">
+        <figcaption><span class="lab">Camera and light in plan</span>
+          <span>Top view with both the camera frustum and the light cone visible against the text. Seeing the two together is what made the scene controllable — the relationship between where the camera is and where the light falls is not something that can be judged from the front view.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="pair">
+      <figure>
+        <img src="images/a02-t2-08.png" alt="After Effects timeline showing camera position and point of interest keyframes">
+        <figcaption><span class="lab">Camera animation</span>
+          <span>Position keyframed from Z −2000 forward, with <strong>Point of Interest</strong> animated separately across X. The camera pushes in while panning across, so the type shifts against the background rather than simply enlarging.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a02-t2-09.png" alt="After Effects timeline showing Material Options with specular intensity, shininess and metal values">
+        <figcaption><span class="lab">Material options</span>
+          <span>The text layer's <span class="t">material options</span> — Ambient 40%, Diffuse 50%, Specular Intensity 70%, Specular Shininess 20%, Metal 80%. These determine how the surface responds to the light rather than how the light itself behaves. Raising Metal shifts the highlight toward the surface colour, so the type reads as solid rather than plastic.</span></figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="images/a02-t2-10.png" alt="After Effects timeline showing an adjustment layer with glow and vignette above the text layers and a 3D background solid below them">
+      <figcaption><span class="lab">Adjustment layers and effects &middot; background layers</span>
+        <span>An <span class="t">adjustment layer</span> at the top of the stack carrying a keyframed Glow (threshold 65%, radius 50) and CC Vignette, affecting every layer beneath it. At the bottom, a solid <span class="t">background layer</span> made 3D and pushed to Z 400 at 180% scale — because it sits in space rather than behind the frame, the camera move produces parallax against it.</span></figcaption>
+    </figure>
+
+    <!-- ===== OUTPUTS ===== -->
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 06 — geometry and virtual lights</span>
+          <span>Extruded and bevelled <span class="t">3D text</span> lit by an animated spotlight. The highlight travels across the letterforms as the light moves, revealing the extrusion in a way static lighting cannot.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/4vjBqE0ES5w" title="Output 06 3D lights" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 07 — virtual camera</span>
+          <span>A 24&nbsp;mm <span class="t">virtual camera</span> animated through the scene on position and point of interest, producing perspective shift and scene depth across the same extruded type.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/3GPyvJqchaM" title="Output 07 camera" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 08 — material options</span>
+          <span>The same scene with specular intensity, shininess and metal adjusted. Nothing about the lighting or the camera changed; the surfaces themselves respond differently.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/WcxG2cyT7Kw" title="Output 08 materials" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 09 — adjustment layers, effects and background</span>
+          <span>A keyframed glow and vignette applied across the whole scene through an <span class="t">adjustment layer</span>, over a 3D solid <span class="t">background layer</span>. The glow builds across the piece, warming the scene as the poem moves toward its resolution.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/mqy2YpNXXBY" title="Output 09 final 3D" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TASK 03 ============ -->
+<section class="task" id="task03">
+  <p class="tasknum">Week 09 &middot; Assignment 02 Task 03</p>
+  <h2>Refining, timing, and compositing</h2>
+  <p class="intro">Refining the composition and timing of the <span class="t">variable motion design sequences</span> and compositing the strongest 2D and 3D material into a single finished piece, <span class="t">synchronised</span> to the soundtrack.</p>
+
+  <div class="spec">
+    <span><b>master comp</b> 1920 × 1080 · 25 fps</span>
+    <span><b>sources</b> 2D + 3D compositions</span>
+    <span><b>grade</b> Lumetri + vignette</span>
+    <span><b>outputs</b> 2</span>
+  </div>
+
+  <div class="figs">
+
+    <figure>
+      <img src="images/a02-t3-01.png" alt="After Effects master timeline with the 2D and 3D compositions nested as layers under an adjustment layer, above the audio waveform">
+      <figcaption><span class="lab">The composited master timeline</span>
+        <span>The 2D and 3D <span class="t">compositions</span> nested as layers in a single master timeline, with an <span class="t">adjustment layer</span> carrying Lumetri Color and CC Vignette across both so the two read as one piece rather than two edits joined together. Because both source compositions were built on the same marker grid, the handover between them lands on the beat without any manual alignment. The refinement is not in either sequence but in the relationship between them — where the cut falls, how long the overlap runs, and whether the grade holds across the join.</span></figcaption>
+    </figure>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 10 — before refinement</span>
+          <span>The composited sequences with a hard cut and no grade. Included as a comparison rather than as an outcome — the difference between this and the final version is entirely timing and treatment.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/uWj_0utTSGo" title="Output 10 before refinement" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+    <div class="output">
+      <figure>
+        <figcaption><span class="lab">Output 11 — final refined motion design</span>
+          <span>The finished piece. 2D and 3D <span class="t">compositions</span> composited into one sequence, the transition dissolved across the join, a consistent grade applied, and every major visual event <span class="t">synchronised</span> to the soundtrack.</span></figcaption>
+      </figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/aFFvWajFg1Q" title="Output 11 final" allowfullscreen loading="lazy"></iframe></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ REFLECTIVE REPORT ============ -->
+<section class="task" id="report">
+  <p class="tasknum">Week 09 &middot; Assignment 02 Task 04</p>
+  <h2>Reflective Report</h2>
+  <div class="report">
+    <p>[Reflective report — approximately 300 words.]</p>
+  </div>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section class="task" id="references">
+  <p class="tasknum">Assignment 02</p>
+  <h2>References</h2>
+
+  <div class="report">
+    <p><strong>Audio</strong><br>
+    Henig, D. (2020). <em>Empire Seasons</em> [Audio]. YouTube Audio Library.<br>
+    Licence: YouTube Audio Library Licence — no attribution required. Licence terms confirmed and screenshot retained.<br>
+    Edited: trimmed to a 32-second section (43.93–76.25&nbsp;s) with a two-second fade-out.</p>
+
+    <p><strong>Text</strong><br>
+    Original twelve-line poem written for this assignment.</p>
+
+    <p><strong>Typefaces</strong><br>
+    Hoefler Text Black (macOS system font) — primary.<br>
+    Impact (macOS system font) — typography variant.</p>
+
+    <p><strong>Tutorials and exemplars consulted</strong></p>
+    <ul style="margin:0;padding-left:1.2em">
+      <li>Adobe — <em>SUPER QUICK Kinetic Typography in After Effects</em></li>
+      <li>Greyscalegorilla — <em>After Effects 3D Text Animation Tutorial, No Plugins</em></li>
+      <li>Mat Voyce — kinetic text exemplars, <a href="https://matvoyce.tv/">matvoyce.tv</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>1740QCA Motion Design &middot; Assignment 02 &middot; Charlie Roberts &middot; Griffith University, Queensland College of Art and Design</p>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.menubtn').forEach(function(b){
+  b.addEventListener('click',function(e){
+    e.preventDefault();
+    var m=b.parentElement, wasOpen=m.classList.contains('open');
+    document.querySelectorAll('.menu.open').forEach(function(o){o.classList.remove('open');
+      o.querySelector('.menubtn').setAttribute('aria-expanded','false');});
+    if(!wasOpen){m.classList.add('open');b.setAttribute('aria-expanded','true');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.menu')){
+    document.querySelectorAll('.menu.open').forEach(function(o){o.classList.remove('open');
+      o.querySelector('.menubtn').setAttribute('aria-expanded','false');});
+  }
+});
+</script>
+</body>
+</html>
