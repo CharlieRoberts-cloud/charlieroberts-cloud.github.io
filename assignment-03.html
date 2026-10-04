@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1740QCA Charlie Roberts — Assignment 03 Process Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap">
+<style>
+:root{
+  --paper:#F5F6F7; --card:#FFFFFF; --surface:#EAEDF1;
+  --ink:#14171C; --muted:#5D6673; --rule:#DCE0E6;
+  --term:#B85C08; --term-bg:#FBEFE0; --spec:#252D38;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:Newsreader,Georgia,serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,nav,.ui,.lab,.spec,.tasknum{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--rule)}
+nav .inner{max-width:1080px;margin:0 auto;padding:0 24px;display:flex;gap:22px;align-items:center;height:54px;overflow-x:auto}
+nav .me{font-weight:600;font-size:.9rem;white-space:nowrap;letter-spacing:-.01em}
+nav a{font-size:.82rem;color:var(--muted);text-decoration:none;white-space:nowrap;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-bottom-color:var(--term)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 52px;display:flex;flex-direction:column;gap:18px;max-width:70ch}
+header.top h1{font-family:"Instrument Sans",sans-serif;font-size:2.6rem;font-weight:600;letter-spacing:-.028em;line-height:1.08}
+.course{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+section.task{padding:56px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:26px}
+.tasknum{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--term)}
+section.task h2{font-size:1.75rem;font-weight:600;letter-spacing:-.02em}
+.intro{max-width:68ch}
+
+.spec{display:flex;flex-wrap:wrap;gap:8px 26px;padding:13px 16px;background:var(--spec);color:#DFE4EB;
+  border-radius:3px;font-family:"IBM Plex Mono",monospace;font-size:.76rem}
+.spec b{color:#93A9C6;font-weight:500}
+
+.t{color:var(--term);background:var(--term-bg);padding:1px 4px;border-radius:2px;font-weight:600;font-size:.96em}
+
+.figs{display:flex;flex-direction:column;gap:40px}
+figure{margin:0;display:flex;flex-direction:column;gap:11px}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+figcaption{font-size:.94rem;max-width:72ch;display:flex;flex-direction:column;gap:5px}
+.lab{font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
+.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;align-items:start}
+
+.vid{position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:3px;overflow:hidden}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.output{display:flex;flex-direction:column;gap:12px;padding:22px 0;border-bottom:1px dashed var(--rule)}
+.output:last-child{border-bottom:none}
+
+.report{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:30px 34px;max-width:70ch;display:flex;flex-direction:column;gap:14px}
+.todo{background:var(--term-bg);border-left:3px solid var(--term);padding:12px 16px;font-size:.9rem;border-radius:0 3px 3px 0}
+footer{border-top:1px solid var(--rule);padding-top:22px;margin-top:56px;color:var(--muted);font-size:.86rem}
+@media (max-width:720px){
+  body{font-size:17px}
+  header.top h1{font-size:1.9rem}
+  .pair,.trio,.quad{grid-template-columns:1fr}
+  .wrap,nav .inner{padding-left:16px;padding-right:16px}
+}
+:focus-visible{outline:2px solid var(--term);outline-offset:3px}
+
+/* ---- shared nav with dropdowns ---- */
+nav .inner{overflow:visible;flex-wrap:wrap;height:auto;min-height:54px;padding-top:6px;padding-bottom:6px}
+nav .me{font-weight:600;font-size:.9rem;white-space:nowrap;letter-spacing:-.01em;margin-right:6px}
+.menu{position:relative}
+.menubtn{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);
+  background:none;border:0;padding:6px 2px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
+  border-bottom:2px solid transparent;white-space:nowrap}
+.menubtn:hover,.menubtn:focus-visible,.menu:hover .menubtn,.menu:focus-within .menubtn{color:var(--ink);border-bottom-color:var(--term)}
+.menubtn .car{font-size:.62em;transform:translateY(1px)}
+.menubtn[aria-current="true"]{color:var(--ink);border-bottom-color:var(--term)}
+.drop{position:absolute;top:calc(100% + 6px);left:0;min-width:260px;background:var(--card);
+  border:1px solid var(--rule);border-radius:3px;box-shadow:0 10px 28px rgba(20,23,28,.13);
+  padding:6px;display:none;flex-direction:column;z-index:20}
+.menu:hover .drop,.menu:focus-within .drop,.menu.open .drop{display:flex}
+.drop a{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.82rem;color:var(--muted);
+  text-decoration:none;padding:8px 11px;border-radius:2px;border-bottom:0;white-space:nowrap;line-height:1.35}
+.drop a:hover,.drop a:focus-visible{background:var(--surface);color:var(--ink);border-bottom:0}
+.drop .sep{height:1px;background:var(--rule);margin:5px 8px}
+@media (max-width:720px){
+  .drop{position:static;box-shadow:none;border:0;padding:0 0 0 12px;min-width:0}
+  .menu:hover .drop,.menu:focus-within .drop{display:none}
+  .menu.open .drop{display:flex}
+  nav .inner{gap:14px}
+}
+
+/* ---- Assignment 03 additions ---- */
+h3.sub{font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin-top:6px}
+.ex{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:20px 22px;display:flex;flex-direction:column;gap:8px;font-size:.94rem}
+.ex h3{font-size:1rem;font-weight:600}
+.ex .meta{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ex .inf{border-top:1px dashed var(--rule);padding-top:8px}
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+.tbl table{border-collapse:collapse;width:100%;font-size:.88rem}
+.tbl th{font-family:"Instrument Sans","Helvetica Neue",Arial,sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 14px;background:var(--surface);white-space:nowrap}
+.tbl td{padding:10px 14px;border-top:1px solid var(--rule);vertical-align:top}
+.tbl td.mono{font-family:"IBM Plex Mono",monospace;font-size:.8rem;white-space:nowrap;color:var(--term)}
+.report ul{margin:0;padding-left:1.2em}
+@media (max-width:720px){.trio.ex3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><div class="inner">
+  <span class="me">1740QCA Motion Design · Charlie Roberts</span>
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false">Assignment 01 <span class="car">▼</span></button>
+    <div class="drop">
+      <a href="index.html#task01">Task 01 · Image Database Creation</a>
+      <a href="index.html#task02">Task 02 · Capture, Import, Edit &amp; Export</a>
+      <a href="index.html#task03">Task 03 · The Composite Image</a>
+      <a href="index.html#task04">Task 04 · The GIF — Looping Moving Image</a>
+      <a href="index.html#task05">Task 05 · Image Sequences in After Effects</a>
+      <div class="sep"></div>
+      <a href="index.html#report">Reflective Report</a>
+    </div>
+  </div>
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false">Assignment 02 <span class="car">▼</span></button>
+    <div class="drop">
+      <a href="assignment-02.html#task01">Task 01 · Animating 2D Text</a>
+      <a href="assignment-02.html#task02">Task 02 · Animating 3D Text</a>
+      <a href="assignment-02.html#task03">Task 03 · Refining, Timing &amp; Compositing</a>
+      <div class="sep"></div>
+      <a href="assignment-02.html#report">Reflective Report</a>
+      <a href="assignment-02.html#references">References</a>
+    </div>
+  </div>
+  <div class="menu">
+    <button class="menubtn" type="button" aria-expanded="false" aria-current="true">Assignment 03 <span class="car">▼</span></button>
+    <div class="drop">
+      <a href="assignment-03.html#task01">Task 01 · Developing the Soundtrack</a>
+      <a href="assignment-03.html#task02">Task 02 · Refining the Soundtrack</a>
+      <a href="assignment-03.html#task03">Task 03 · Problem Solving &amp; Resolution</a>
+      <div class="sep"></div>
+      <a href="assignment-03.html#report">Reflective Report</a>
+      <a href="assignment-03.html#references">Credits, Licences &amp; References</a>
+    </div>
+  </div>
+</div></nav>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="course">1740QCA Motion Design · Assignment 03 · Trimester 2 2026</p>
+  <h1>Soundtrack design</h1>
+  <p>A Process Journal documenting the design of a new and original <span class="t">multi-layered soundtrack</span> for the 3D kinetic text sequence from Assignment 02. The old music track was removed entirely, and a soundtrack of <span class="t">ambient sound</span>, <span class="t">sound effects</span> and tonal layers was built from ten sound sources in the <span class="t">Premiere Pro Timeline</span>, then edited, layered and <span class="t">synchronised</span> to the motion frame by frame.</p>
+  <p style="color:var(--muted);font-size:.95rem">The visuals are a twelve-line poem that moves from concealment to disclosure: walls built up, something breaking, the walls coming down, and growth afterwards. In Assignment 02 a cinematic instrumental carried the mood. Here the sound is designed to <em>be</em> the poem's physical world instead: a quiet room, a breath, a heartbeat, pressure building, a snap, falling stone, and finally warmth. Every sound sits on a specific visual event, and the soundtrack follows the same emotional arc as the text.</p>
+  <div class="spec">
+    <span><b>video</b> 1920 × 1080 · 25 fps · 32.32 s</span>
+    <span><b>audio tracks</b> 10</span>
+    <span><b>sound sources</b> 10 · Creative Commons</span>
+    <span><b>software</b> Premiere Pro · Audition</span>
+    <span><b>outputs</b> 2 (v1 · v2)</span>
+  </div>
+</header>
+
+<!-- ============================ TASK 01 ============================ -->
+<section class="task" id="task01">
+  <p class="tasknum">Week 10 · Assignment 03 Task 01</p>
+  <h2>Developing a soundtrack for motion design</h2>
+  <p class="intro">Creating and editing a <span class="t">multi-track soundtrack</span> in the <span class="t">Premiere Pro Timeline</span> using <span class="t">audio layers</span>, <span class="t">sound effects</span>, <span class="t">ambient sound</span> and <span class="t">audio levels</span>. This stage covers the genre and exemplars that shaped the approach, sourcing and licensing the sounds, preparing the project, and building the first half of the soundtrack up to the break.</p>
+  <div class="spec">
+    <span><b>sequence</b> A3_graphic · 1920 × 1080 · 25 fps</span>
+    <span><b>duration</b> 00:00:32:08</span>
+    <span><b>layers built</b> ambience · breathing · heartbeat · low rumble</span>
+  </div>
+
+  <h3 class="sub">Genre and exemplars</h3>
+  <p class="intro">The piece sits within the genre of the <span class="t">main title sequence</span> and <span class="t">kinetic typography</span>: type is the only visual element, so the sound has to do the work that actors, sets and dialogue do in a film. Three title sequences were used as exemplars, each for a different soundtrack decision.</p>
+  <div class="trio ex3">
+    <div class="ex">
+      <p class="meta">Title sequence · 1960</p>
+      <h3>Psycho — Saul Bass</h3>
+      <p>Bass's titles use only bars and type sliding on and off screen, cut against Bernard Herrmann's jagged, all-strings score. The type and the music feel like one gesture: every slicing movement lands on a stab in the score.</p>
+      <p class="inf"><b>Influence:</b> <span class="t">hard sync</span>. The two biggest events in my piece, the break and the walls landing, each get one sound placed on the exact frame, rather than a sound that roughly covers the moment.</p>
+    </div>
+    <div class="ex">
+      <p class="meta">Title sequence · 1995</p>
+      <h3>Se7en — Kyle Cooper, R/GA</h3>
+      <p>Hand-etched, jittering type assembled by hand rather than digitally, cut to an abrasive industrial soundtrack. The unease comes from texture and noise rather than melody, and the sequence is often credited with reviving the title sequence as an art form.</p>
+      <p class="inf"><b>Influence:</b> <span class="t">texture over melody</span>. The dark first half of my soundtrack is built from noise-based layers (room tone, breath, heartbeat, rumble, crunch) instead of music, so the tension feels physical.</p>
+    </div>
+    <div class="ex">
+      <p class="meta">Main title · 2016</p>
+      <h3>Stranger Things — Imaginary Forces</h3>
+      <p>Glowing serif letterforms drift slowly into place over a swelling synthesiser theme by Kyle Dixon and Michael Stein. It won the 2017 Emmy for Outstanding Main Title Design. The motion is slow and the music resolves by building warmth rather than hitting.</p>
+      <p class="inf"><b>Influence:</b> <span class="t">resolution through warmth</span>. My final couplet is glowing serif type too, so the ending uses a slow tonal swell and chimes that rise with the glow, the first musical sounds in the piece.</p>
+    </div>
+  </div>
+
+  <h3 class="sub">Sourcing sounds — Remix and the Creative Commons</h3>
+  <p class="intro">All ten sounds were sourced from <span class="t">Freesound</span> under <span class="t">Creative Commons</span> licences (CC0, CC BY and CC BY-NC), and every one is credited with its licence in the <a href="#references">Credits &amp; Licences</a> section. Each sound was chosen for one specific line of the poem, and none is used as it was downloaded: every source has been <span class="t">trimmed</span>, <span class="t">reversed</span>, <span class="t">keyframed</span>, re-levelled or <span class="t">layered</span> with others to <span class="t">remix</span> it into a new composition. The two files Premiere could not open (.ogg and .flac) were first converted to .wav in <span class="t">Adobe Audition</span>.</p>
+
+  <div class="figs">
+    <div class="pair">
+      <figure>
+        <img src="images/a03-t1-01.png" alt="Premiere Pro timeline with the A2 video on V1 and its original music linked on A1">
+        <figcaption><span class="lab">Starting point — the A2 video and its old music</span>
+        <span>The final Assignment 02 render imported into a new sequence. Dragging the clip onto the New Item icon built a sequence that matches the source exactly: 1920 × 1080, 25 fps, 00:00:32:08. The original music, <em>Empire Seasons</em>, is still linked on A1.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a03-t1-02.png" alt="The same timeline with the original audio deleted, only the video remaining on V1">
+        <figcaption><span class="lab">Starting fresh</span>
+        <span>The video and audio <span class="t">unlinked</span> and the old music deleted, leaving the picture alone on V1. Deleting rather than muting means it can never be switched back on by accident or exported with the new soundtrack.</span></figcaption>
+      </figure>
+    </div>
+    <div class="pair">
+      <figure>
+        <img src="images/a03-t1-03.png" alt="Project panel in icon view showing the imported sound files">
+        <figcaption><span class="lab">Importing the sound library</span>
+        <span>All ten sound sources imported into the Project panel alongside the video. Keeping every asset in one project folder (Video, Sounds, Screenshots, Exports) stops Premiere losing links later.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a03-t1-04.png" alt="Project panel in list view showing sample rates and durations of each sound file">
+        <figcaption><span class="lab">Checking the sources</span>
+        <span>List view shows how varied the sources are: <span class="t">sample rates</span> of 44,100, 48,000 and 96,000 Hz, and lengths from a 5-second heartbeat to a 1 minute 32 second chime recording. Each was recorded at a very different loudness, which is why <span class="t">audio levels</span> became the main mixing problem later.</span></figcaption>
+      </figure>
+    </div>
+    <figure>
+      <img src="images/a03-t1-05.png" alt="Eight frames from the motion design, each labelled with a timecode and the sound placed there">
+      <figcaption><span class="lab">Cue map — where each sound lives</span>
+      <span>Before placing anything, the video was stepped through frame by frame to find the exact timecode of every visual event, then each was given a sound. The key <span class="t">sync points</span> are the letters scattering at 15:00 and the falling line landing at 19:06. Timecodes are in Premiere's seconds:frames format.</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/a03-t1-06.png" alt="Breathing file in the Source monitor with an In and Out point marking one breath, and the timeline below">
+      <figcaption><span class="lab">Breathing — selecting one breath</span>
+      <span>The breathing recording contains hard, soft and normal breathing. One slow, soft breath was isolated in the Source monitor with <span class="t">In and Out points</span> and dragged to the timeline as audio only, so no trimming was needed. A second, quieter copy at 08:00 (-14 dB) sits under "And held it at arm's length…" so the breath seems to move further away.</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/a03-t1-07.png" alt="Timeline with the room tone across the whole sequence, two breaths and two heartbeat clips">
+      <figcaption><span class="lab">The opening layers</span>
+      <span>Three layers make up the closed-in opening. A room tone recorded in a real apartment runs under the whole piece as the <span class="t">ambient sound</span> bed, faded in and out. The breath arrives with the first line, and two heartbeat copies run end to end from 03:00 to 14:19. The heartbeat stops dead the frame "Then something in me broke" appears, with no fade.</span></figcaption>
+    </figure>
+    <div class="pair">
+      <figure>
+        <img src="images/a03-t1-08.png" alt="Low rumble clip on A4 with volume keyframes forming a rising ramp">
+        <figcaption><span class="lab">Low rumble — volume keyframes</span>
+        <span>The rumble enters at 10:00 under "The weight I would not name," and is shaped with <span class="t">volume keyframes</span> so it rises from silence towards the break.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="images/a03-t1-09.png" alt="Close-up of the rumble keyframes with the Properties panel showing the volume value">
+        <figcaption><span class="lab">The ramp up close</span>
+        <span>The ramp stays low while the heartbeat is playing, then surges in the last moments once the heartbeat drops out, reaching +5.6 dB just before the clip cuts off at 15:00. The end has no fade, so the pressure stops at the exact moment of the break.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TASK 02 ============================ -->
+<section class="task" id="task02">
+  <p class="tasknum">Week 11 · Assignment 03 Task 02</p>
+  <h2>Refining the soundtrack</h2>
+  <p class="intro">Editing audio and adding effects in <span class="t">Adobe Premiere Pro</span>: building the break, the walls falling and the resolution, <span class="t">synchronising</span> each <span class="t">sound effect</span> to its visual event, and exporting the first full version.</p>
+  <div class="spec">
+    <span><b>tracks</b> 10</span>
+    <span><b>sync points</b> 15:00 snap · 19:06 impact</span>
+    <span><b>techniques</b> In/Out · reverse · keyframes · fades · Audio Gain</span>
+    <span><b>output</b> v1</span>
+  </div>
+
+  <div class="figs">
+    <figure>
+      <img src="images/a03-t2-01.png" alt="Timeline zoomed in at 15:00 showing the snap on A5, crunching on A6 and the rumble ending on A4">
+      <figcaption><span class="lab">The break — snap on the frame</span>
+      <span>Zoomed in to single frames around 15:00. One snap was cut from a recording of many breaking sticks, with its In point set right at the start of the <span class="t">transient</span>, so dropping it at the playhead lands the hit exactly as the letters scatter. Underneath, a crunch texture covers the letters flying apart, and the rumble on A4 cuts off on the same frame.</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/a03-t2-02.png" alt="Right-click menu on the crunch clip with Speed/Duration greyed out">
+      <figcaption><span class="lab">Reversing the crunch — Speed/Duration</span>
+      <span>When the letters fly back together (16:19–17:12) the crunch was meant to play backwards, so the scatter sounds like it is being pulled back in. In the right-click menu <span class="t">Speed/Duration</span> was greyed out, so the clip was deselected and reselected on its own and the dialog was opened with the keyboard shortcut (Cmd + R) instead, where <span class="t">Reverse Speed</span> was ticked. Only the copy at 16:19 is reversed; the forward crunch at 15:00 is untouched.</span></figcaption>
+    </figure>
+  </div>
+
+  <h3 class="sub">The walls come down</h3>
+  <p class="intro">"the walls came down like stones" drops in from the top of frame at 18:22 and lands at 19:06. The first <span class="t">whoosh</span> (16:19) was trimmed to end at 17:12 with the letters reassembling. The second was first cut from the loudest part of the sound to peak as the words fell, but it felt too animated, like a cartoon effect. It was replaced with the <span class="t">build-up</span> section, raised to +10 dB and faded out <em>over</em> the rock impact, so the fall and the crash read as one continuous movement. The <span class="t">rock impact</span> hits on the landing frame and its cracking tail fades out under "I stood there on my own.", which is left otherwise silent.</p>
+
+  <div class="figs">
+    <figure>
+      <img src="images/a03-t2-03.png" alt="The complete timeline with all ten audio tracks populated">
+      <figcaption><span class="lab">The full multi-track timeline</span>
+      <span>All ten <span class="t">audio layers</span> in place. Reading top to bottom the timeline follows the poem: a continuous ambient bed, then breathing, heartbeat and rumble building pressure in the first half; the snap, crunches and whooshes clustered around the break; the rock impact at 19:06; and the warm swell and chimes opening up the ending.</span></figcaption>
+    </figure>
+    <div class="tbl"><table>
+      <tr><th>Track</th><th>Sound</th><th>Placement</th><th>Edit / technique</th></tr>
+      <tr><td class="mono">A1</td><td>Room tone</td><td>00:00 – 32:08</td><td>Ambient bed, fades in and out, -10 dB</td></tr>
+      <tr><td class="mono">A2</td><td>Breathing</td><td>00:00 · 08:00</td><td>One breath isolated with In/Out, fades, -10 / -14 dB</td></tr>
+      <tr><td class="mono">A3</td><td>Heartbeat</td><td>03:00 – 14:19</td><td>Duplicated end to end, hard stop at the break, 0 dB</td></tr>
+      <tr><td class="mono">A4</td><td>Low rumble</td><td>10:00 – 15:00</td><td>Volume keyframe ramp, hard cut at 15:00</td></tr>
+      <tr><td class="mono">A5</td><td>Single snap</td><td>15:00</td><td>One snap cut from many, In point on the transient</td></tr>
+      <tr><td class="mono">A6</td><td>Crunching</td><td>15:00 · 16:19</td><td>Forward for the scatter, Reverse Speed (Cmd + R) for the return</td></tr>
+      <tr><td class="mono">A7</td><td>Whoosh</td><td>16:19 · ~19:00</td><td>Trimmed; build-up section faded over the impact, +10 dB</td></tr>
+      <tr><td class="mono">A8</td><td>Rock impact</td><td>19:06</td><td>Hit on the landing frame, long tail fade, -15 dB</td></tr>
+      <tr><td class="mono">A9</td><td>Warm swell</td><td>22:12 – 32:08</td><td>Long fade in, faded out from 30:00</td></tr>
+      <tr><td class="mono">A10</td><td>Chimes</td><td>24:00 – 32:08</td><td>Long fade in with the glow, faded out from 30:00</td></tr>
+    </table></div>
+    <figure>
+      <img src="images/a03-t2-04.png" alt="Timeline zoomed to the final seconds showing fades on the room tone, warm swell and chimes">
+      <figcaption><span class="lab">Resolution — the final fade</span>
+      <span>The warm swell rises over two seconds from 22:12 as "And there, at last, I grew" fades in, and the chimes grow with the glow from 24:00. They are the first tonal, musical sounds in the piece. From 30:00 the room tone, swell and chimes <span class="t">fade out</span> together, so the last frame is silent as the picture goes dark.</span></figcaption>
+    </figure>
+    <div class="output">
+      <figure><figcaption><span class="lab">Output v1 — first complete soundtrack</span>
+      <span>All ten layers placed, synchronised and balanced by ear. Exported as H.264, 1920 × 1080, 25 fps, with AAC stereo audio.</span></figcaption></figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/Yn5iqu0T0n0" title="A3 soundtrack v1" allowfullscreen="" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TASK 03 ============================ -->
+<section class="task" id="task03">
+  <p class="tasknum">Week 12 · Assignment 03 Task 03</p>
+  <h2>Independent problem solving and resolution</h2>
+  <p class="intro">Resolving a finished soundtrack and motion design sequence that brings together <span class="t">video editing</span> techniques and a <span class="t">multi-layered synchronised soundtrack</span>. Most of the problems were about <span class="t">audio levels</span>: ten sources recorded at very different loudnesses had to be balanced so each one is heard at the right moment.</p>
+  <div class="spec">
+    <span><b>v1</b> -24.6 LUFS · peak 0.0 dB</span>
+    <span><b>v2</b> -18.8 LUFS · peak -1.9 dB</span>
+    <span><b>final output</b> v2</span>
+  </div>
+
+  <h3 class="sub">Iterations — what changed and why</h3>
+  <div class="tbl"><table>
+    <tr><th>Problem</th><th>Decision</th></tr>
+    <tr><td>The heartbeat was inaudible at -20 dB. It is a low-frequency sound, and laptop speakers barely reproduce it.</td><td>Raised to 0 dB and checked on both headphones and laptop speakers.</td></tr>
+    <tr><td>The low rumble <span class="t">masked</span> the heartbeat halfway through the ramp, because both sounds sit in the low frequencies.</td><td>Lowered the keyframe ramp so the rumble stays under the heartbeat, surging only after the heartbeat stops.</td></tr>
+    <tr><td>The rock impact file was far louder than the other sources and overwhelmed the mix.</td><td>Lowered to -15 dB. Balanced by ear rather than by matching numbers.</td></tr>
+    <tr><td>The whoosh peak timed to the falling words felt too animated, like a cartoon effect.</td><td>Swapped to the build-up section, raised to +10 dB and faded over the impact so fall and crash become one movement.</td></tr>
+    <tr><td>Measuring v1 showed it was quiet overall (-24.6 LUFS) and the snap peaked at 0.0 dB, the limit before <span class="t">clipping</span>, about 14 dB louder than the rock impact.</td><td>Snap lowered by 8 dB, then the whole mix raised by 6 dB on the Mix track, giving v2.</td></tr>
+  </table></div>
+
+  <div class="figs">
+    <figure>
+      <img src="images/a03-t3-01.png" alt="Line chart comparing the loudness of v1 and v2 over the 32 seconds">
+      <figcaption><span class="lab">v1 against v2 — loudness over time</span>
+      <span>Both exports measured in 0.2-second windows. v2 sits about 6 dB higher throughout, so the quiet opening is audible on ordinary speakers, while the snap at 15:00 no longer spikes above everything else. The <span class="t">dynamic range</span> is kept: the drop into silence after the break and the stillness after the impact are still clearly visible as troughs.</span></figcaption>
+    </figure>
+    <div class="output">
+      <figure><figcaption><span class="lab">Output v2 — final</span>
+      <span>The resolved soundtrack. Integrated loudness raised from -24.6 to -18.8 LUFS with the peak held at -1.9 dB, and the snap brought back into proportion with the rock impact. Exported as H.264, 1920 × 1080, 25 fps, with AAC stereo audio.</span></figcaption></figure>
+      <div class="vid"><iframe src="https://www.youtube.com/embed/XRzAZqSDNBU" title="A3 soundtrack v2 final" allowfullscreen="" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ REPORT ============================ -->
+<section class="task" id="report">
+  <p class="tasknum">Week 12 · Assignment 03</p>
+  <h2>Reflective Report</h2>
+  <div class="todo">Reflective report (approximately 300 words) to be added, using the Assignment 03 Self Evaluation Form.</div>
+</section>
+
+<!-- ============================ REFERENCES ============================ -->
+<section class="task" id="references">
+  <p class="tasknum">Assignment 03</p>
+  <h2>Credits, Licences &amp; References</h2>
+  <div class="report">
+    <p><strong>Sound effects and ambient sound</strong> — all from Freesound (freesound.org)</p>
+    <ul>
+      <li>klankbeeld. (2024). <em>room-tone apartment 656 AM 240215_0663</em> [Audio]. Freesound. <a href="https://freesound.org/people/klankbeeld/sounds/751329/">freesound.org/people/klankbeeld/sounds/751329</a><br>Licence: CC Attribution 4.0. Credit: klankbeeld — <a href="https://freesound.org/people/klankbeeld/">freesound.org/people/klankbeeld</a></li>
+      <li>Elmarp. (2016). <em>Breathing .wav</em> [Audio]. Freesound. <a href="https://freesound.org/people/Elmarp/sounds/366988/">freesound.org/people/Elmarp/sounds/366988</a><br>Licence: CC Attribution-NonCommercial 3.0</li>
+      <li>StudentTanita. (2015). <em>Soft and calm heartbeat.wav</em> [Audio]. Freesound. <a href="https://freesound.org/people/StudentTanita/sounds/327278/">freesound.org/people/StudentTanita/sounds/327278</a><br>Licence: CC Attribution-NonCommercial 3.0</li>
+      <li>Woodingp. (2009). <em>Low Rumble New.2.aif</em> [Audio]. Freesound. <a href="https://freesound.org/people/Woodingp/sounds/83517/">freesound.org/people/Woodingp/sounds/83517</a><br>Licence: CC0 (no attribution required, credited anyway)</li>
+      <li>qubodup. (2013). <em>Breaking Sticks</em> [Audio]. Freesound. <a href="https://freesound.org/people/qubodup/sounds/192651/">freesound.org/people/qubodup/sounds/192651</a><br>Licence: CC Attribution 4.0. Sounds credit: qubodup</li>
+      <li>Idalize. (2017). <em>Crunchy Footsteps / Biting / Burning</em> [Audio]. Freesound. <a href="https://freesound.org/people/Idalize/sounds/410150/">freesound.org/people/Idalize/sounds/410150</a><br>Licence: CC Attribution-NonCommercial 4.0</li>
+      <li>ch_ase. (2018). <em>Little Whoosh 2</em> [Audio]. Freesound. <a href="https://freesound.org/people/ch_ase/sounds/423799/">freesound.org/people/ch_ase/sounds/423799</a><br>Licence: CC0 (no attribution required, credited anyway)</li>
+      <li>Artninja. (2026). <em>rock_impact_w_cracking_sound_heavens_feel_01012026</em> [Audio]. Freesound. <a href="https://freesound.org/people/Artninja/sounds/840689/">freesound.org/people/Artninja/sounds/840689</a><br>Licence: CC Attribution 4.0</li>
+      <li>JetSmith88. (2013). <em>soft_chords_F#.wav</em> [Audio]. Freesound. <a href="https://freesound.org/people/JetSmith88/sounds/206065/">freesound.org/people/JetSmith88/sounds/206065</a><br>Licence: CC0 (no attribution required, credited anyway)</li>
+      <li>thatjeffcarter. (2012). <em>We Listen – melody.wav</em> [Audio]. Freesound. <a href="https://freesound.org/people/thatjeffcarter/sounds/141865/">freesound.org/people/thatjeffcarter/sounds/141865</a><br>Licence: CC Attribution 4.0</li>
+    </ul>
+    <p>All sounds are used non-commercially, as one part of a new composition, and every one has been edited (trimmed, reversed, keyframed, re-levelled and layered). No raw files are redistributed.</p>
+    <p><strong>Visuals</strong><br>Original 3D kinetic text sequence and poem from Assignment 02 (Charlie Roberts, 2026).</p>
+    <p><strong>Exemplars</strong></p>
+    <ul>
+      <li>Bass, S. (Title Designer). (1960). <em>Psycho</em> [Title sequence]. Music by Bernard Herrmann. <a href="https://www.artofthetitle.com/title/psycho/">Art of the Title</a></li>
+      <li>Cooper, K. (Title Designer), R/GA. (1995). <em>Se7en</em> [Title sequence]. <a href="https://www.artofthetitle.com/title/se7en/">Art of the Title</a></li>
+      <li>Imaginary Forces (Studio), Dougherty, M. (Creative Director). (2016). <em>Stranger Things</em> [Main title sequence]. Music by Kyle Dixon and Michael Stein. <a href="https://www.artofthetitle.com/title/stranger-things">Art of the Title</a></li>
+    </ul>
+    <p><strong>Software</strong><br>Adobe Premiere Pro (editing, multi-track mix, export) · Adobe Audition (converting .ogg and .flac files to .wav).</p>
+  </div>
+  <figure>
+    <img src="images/a03-lic-01.png" alt="Freesound page for the klankbeeld room tone showing the creator's attribution and usage requirements">
+    <figcaption><span class="lab">Licence evidence — room tone (klankbeeld)</span>
+    <span>The creator's usage terms on the Freesound page: always credit klankbeeld and freesound.org, and do not redistribute the raw file. Both are met here: the sound is credited above and is used only as one layer within a new composition.</span></figcaption>
+  </figure>
+  <div class="todo">Licence screenshots for the remaining nine sounds to be added.</div>
+</section>
+
+<footer>
+  <p>1740QCA Motion Design · Assignment 03 · Charlie Roberts · Griffith University, Queensland College of Art and Design</p>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.menubtn').forEach(function(b){
+  b.addEventListener('click',function(e){
+    e.preventDefault();
+    var m=b.parentElement, wasOpen=m.classList.contains('open');
+    document.querySelectorAll('.menu.open').forEach(function(o){o.classList.remove('open'); o.querySelector('.menubtn').setAttribute('aria-expanded','false');});
+    if(!wasOpen){m.classList.add('open');b.setAttribute('aria-expanded','true');}
+  });
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.menu')){
+    document.querySelectorAll('.menu.open').forEach(function(o){o.classList.remove('open'); o.querySelector('.menubtn').setAttribute('aria-expanded','false');});
+  }
+});
+</script>
+
+</body>
+</html>
